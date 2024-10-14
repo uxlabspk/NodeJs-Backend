@@ -2,21 +2,21 @@
 // @route /api/books
 // public
 const getBooks = (req, res) => {
-  res.send({ message: "Get All Books" });
+  res.status(200).json({ message: "Get All Books" });
 };
 
 // @desc create a book
 // @route /api/books
 // public
 const createBook = (req, res) => {
-  res.send({ message: "Create a Book" });
+  res.status(201).json({ message: "Create a Book" });
 };
 
 // @desc get a book
 // @route /api/books/:id
 // public
 const getBook = (req, res) => {
-  res.send({ message: "Get a Book" });
+  res.status(200).json({ message: "Get a Book" });
 };
 
 // @desc update a book
@@ -24,14 +24,14 @@ const getBook = (req, res) => {
 // public
 const updateBook = (req, res) => {
   console.log(req.body);
-  res.json({ message: "Update a book" });
+  res.status(200).json({ message: "Update a book" });
 };
 
 // @desc delete a books
 // @route /api/books/:id
 // public
 const deleteBook = (req, res) => {
-  res.send({ message: "Delete a book" });
+  res.status(200).json({ message: "Delete a book" });
 };
 
 export { getBooks, createBook, getBook, updateBook, deleteBook };
