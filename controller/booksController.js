@@ -1,6 +1,5 @@
 import asyncHandler from "express-async-handler";
 import Book from "../models/bookModel.js";
-import book from "../models/bookModel.js";
 
 // @desc Get all books
 // @route /api/books
@@ -58,15 +57,31 @@ const getBook = asyncHandler(async (req, res) => {
 // @route /api/books/:id
 // public
 const updateBook = asyncHandler(async (req, res) => {
-  console.log(req.body);
-  res.status(200).json({ message: "Update a book" });
+  const book = await Book.findById(req.params.id);
+  if (!book) {
+    res.status(404);
+    throw new Error("Book Not Found");
+  }
+
+  const updatedBook = await Book.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  });
+
+  res.status(200).json(updatedBook);
 });
 
 // @desc delete a books
-// @route /api/books/:id
-// public
+// @route DELETE /api/books/:id
+// @access public
 const deleteBook = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: "Delete a book" });
+  const book = await Book.findById(req.params.id);
+  if (!book) {
+    res.status(404);
+    throw new Error("Book Not Found");
+  }
+
+  await Book.findByIdAndDelete(req.params.id);
+  res.status(200).json(book);
 });
 
 export { getBooks, createBook, getBook, updateBook, deleteBook };

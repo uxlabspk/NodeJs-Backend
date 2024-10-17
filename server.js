@@ -3,6 +3,7 @@ import booksRouter from "./routes/booksRoutes.js";
 import dot from "dotenv";
 import errorHandler from "./middleware/errorHandling.js";
 import connectDB from "./config/dbConnection.js";
+import usersRouter from "./routes/usersRoutes.js";
 
 // configure the server
 const app = express();
@@ -11,6 +12,7 @@ app.use(express.json());
 
 // Books routes
 app.use("/api/books", booksRouter);
+app.use("/api/users", usersRouter);
 
 app.use(errorHandler);
 

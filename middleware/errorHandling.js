@@ -28,7 +28,8 @@ const errorHandler = (err, req, res, next) => {
       console.log("All good");
       break;
   }
-  res.json({ title: "", message: err.message });
+
+  res.json({title: "INVALID", message: err.message});
 };
 
 export default errorHandler;
