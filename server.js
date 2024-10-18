@@ -7,14 +7,15 @@ import usersRouter from "./routes/usersRoutes.js";
 
 // configure the server
 const app = express();
-dot.config();
-app.use(express.json());
 
-// Books routes
-app.use("/api/books", booksRouter);
-app.use("/api/users", usersRouter);
+dot.config(); // enable env support
+app.use(express.json()); // using express.json middleware
 
-app.use(errorHandler);
+// Routes
+app.use("/api/books", booksRouter); // Books route
+app.use("/api/users", usersRouter); // User route
+
+app.use(errorHandler); // using custom error handler middleware
 
 // listening on port
 app.listen(process.env.PORT || 4000, () => {
