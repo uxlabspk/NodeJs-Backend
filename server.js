@@ -19,6 +19,5 @@ app.use(errorHandler); // using custom error handler middleware
 
 // listening on port
 app.listen(process.env.PORT || 4000, () => {
-  connectDB();
-  console.log("Listening on port ", process.env.PORT);
+  connectDB().then(r => console.log("Listening on port ", process.env.PORT)).catch(error => console.log(error));
 });

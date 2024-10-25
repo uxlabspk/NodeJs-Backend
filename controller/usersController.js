@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import { User } from "../models/userModel.js";
+import bcrypt from "bcryptjs";
 
 // @desc create user
 // @route POST /api/users/register
@@ -17,7 +18,8 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("User already exists!");
   }
 
-  const hashPassword = password + "!@#";
+  const salt = bcrypt.genSalt(10);
+  const hashPassword = bcrypt.hash(password, salt);
 
   const user = await User.create({
     username,

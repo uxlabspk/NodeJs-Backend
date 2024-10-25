@@ -3,7 +3,7 @@ import Book from "../models/bookModel.js";
 
 // @desc Get all books
 // @route /api/books
-// public
+// @access public
 const getBooks = asyncHandler(async (req, res) => {
   const books = await Book.find();
   res.status(200).json(books);
@@ -11,7 +11,7 @@ const getBooks = asyncHandler(async (req, res) => {
 
 // @desc create a book
 // @route /api/books
-// public
+// @access public
 const createBook = asyncHandler(async (req, res) => {
   const { title, author, bookDescription, genre, bookCover, price, format } =
     req.body;
